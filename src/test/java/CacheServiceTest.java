@@ -6,11 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.project.cache.Main;
 import com.project.cache.model.CacheModel;
 import com.project.cache.service.CacheService;
 
 
-@SpringBootTest
+@SpringBootTest(classes=Main.class)
 public class CacheServiceTest {
 
 	@Autowired
@@ -24,7 +25,7 @@ public class CacheServiceTest {
 		
 		CacheModel cacheModel = new CacheModel();
 		cacheModel.setDatas(DATASMOCK);
-		cacheModel.setExpirationTime(1L);
+		cacheModel.setExpirationTime(System.currentTimeMillis()+2000L);
 		
 		assertTrue( cacheService.addCacheDataWithCle(CLEMOCK, cacheModel) );
 	}
